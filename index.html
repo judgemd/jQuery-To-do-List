@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
     <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
     <title>jQuery To-do list</title>
-</head>
-<body>
-
+  </head>
+  <body>
     <div class="wrapper">
       <input type="text" class="txtb" placeholder="Add a task" />
 
@@ -28,5 +27,34 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-</body>
+    <script>
+
+      $(".txtb").on("keyup", function (e) {
+        if (e.keyCode == 13 && $(".txtb").val() != "") {
+          var task = $("<div class='task'></div>").text($(".txtb").val());
+          var del = $("<i class='fas fa-trash'>").click(function () {
+            var p = $(this).parent();
+            p.fadeOut(function () {
+              p.remove;
+            });
+          });
+
+          var check = $("<i class='fas fa-check'>").click(function () {
+            var p = $(this).parent();
+            p.fadeOut(function () {
+              $(".comp").append(p);
+              p.fadeIn();
+            });
+            $(this).remove();
+          });
+
+          task.append(del, check);
+          $(".notcomp").append(task);
+
+          $(".txtb").val("");
+        }
+      });
+      
+    </script>
+  </body>
 </html>
